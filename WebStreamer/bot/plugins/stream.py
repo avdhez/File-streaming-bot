@@ -1,6 +1,3 @@
-# This file is a part of TG-FileStreamBot
-# Coding : Jyothis Jayanth [@EverythingSuckz]
-
 import logging
 from pyrogram import filters, errors
 from WebStreamer.vars import Var
@@ -8,7 +5,7 @@ from urllib.parse import quote_plus
 from WebStreamer.bot import StreamBot, logger
 from WebStreamer.utils import get_hash, get_name
 from pyrogram.enums.parse_mode import ParseMode
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import Message
 
 
 @StreamBot.on_message(
@@ -39,10 +36,7 @@ async def media_receive_handler(_, m: Message):
                 stream_link, short_link
             ),
             quote=True,
-            parse_mode=ParseMode.HTML,
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Open", url=stream_link)]]
-            ),
+            parse_mode=ParseMode.HTML
         )
     except errors.ButtonUrlInvalid:
         await m.reply_text(
@@ -50,5 +44,5 @@ async def media_receive_handler(_, m: Message):
                 stream_link, short_link
             ),
             quote=True,
-            parse_mode=ParseMode.HTML,
+            parse_mode=ParseMode.HTML
         )
